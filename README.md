@@ -2,7 +2,7 @@
 
 acakin is simple bash script to generate random number
 
-In this initial commit, acakin only support generate auto 6 digit
+In this v1.0.1 acakin support generate multiple random number (between 1 and 10) with 6 digit at each number
 
 ### How to use
 
