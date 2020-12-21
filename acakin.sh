@@ -20,5 +20,5 @@ else
         random_number=$d1$d2$d3$d4$d5$d6
         echo $random_number
         output_number=$((output_number + 1))
-        done
+    done
 fi
