@@ -4,18 +4,18 @@
 rm -rf ./print_number.txt
 
 #get user input
-echo "How many number would you generate ? Input here (1-10) :"
+echo "How many number would you generate ? Input here (1-100) :"
 read input_number
 
 #check condition if user input is correct
-if [ $input_number -lt 1 ] || [ $input_number -gt 10 ]
+if [ $input_number -lt 1 ] || [ $input_number -gt 100 ]
 then
     echo "Wrong input"
 else
     #generate random number and print to txt file
     output_number=0
     echo "Your random number :"
-    until [ $output_number -ge $input_number ]
+    while [ $output_number -lt $input_number ]
     do
         d1=$(( $RANDOM % 10 ))
         d2=$(( $RANDOM % 10 ))
