@@ -32,3 +32,13 @@ Features on v1.0.3:
      or
 
      `docker run -it --rm lanandra/acakin:1.0.3 | tee -a print_number.txt`
+
+     Optional:
+
+     For clean output, please delete any existing print_number.txt. You can use this command
+
+     `rm -rf print_number.txt ; docker run -it --rm lanandra/acakin:latest | tee -a print_number.txt`
+
+     or
+
+     `rm -rf print_number.txt ; docker run -it --rm lanandra/acakin:1.0.3 | tee -a print_number.txt`
