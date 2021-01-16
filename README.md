@@ -17,8 +17,14 @@ Features on v1.0.3:
 ### Run on Docker container
 1. Pull image from dockerhub
 
+     Pull latest version 
+     `docker pull lanandra/acakin`
+
+     Or you can pull using tag for specific version
      `docker pull lanandra/acakin:1.0.3`
 
 2. Run container using this command
 
+     `docker run -it --rm lanandra/acakin:latest | tee -a print_number.txt`
+     or
      `docker run -it --rm lanandra/acakin:1.0.3 | tee -a print_number.txt`
