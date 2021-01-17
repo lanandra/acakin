@@ -37,12 +37,5 @@ jobs:
           name: lanandra/acakin
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          tags: ${{ env.STATE_RELEASE_VERSION }}
-      - 
-        name: Push to Docker Hub as latest
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: lanandra/acakin
-          tags: latest
+          tags: "latest,${{ env.STATE_RELEASE_VERSION }}"
+      
