@@ -1,5 +1,7 @@
 # acakin
 
+![alt text](https://github.com/lanandra/acakin/blob/main/acakin_logo.jpg?raw=true)
+
 acakin is simple bash script to generate random number
 
 Features on v1.0.3:
