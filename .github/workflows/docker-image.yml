@@ -1,18 +1,48 @@
 name: Docker Image CI
 
 on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    release:
+      types: [published]
+    branches:
+      - main
+    
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - 
+        name: Check out the repo
+        uses: actions/checkout@v2
+      - 
+        name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Set env
+        run: echo ::save-state name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+      - 
+        name: Test
+        run:
+          echo $RELEASE_VERSION
+          echo ${{ env.STATE_RELEASE_VERSION }}
+      - 
+        name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: lanandra/acakin
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          tags: ${{ env.STATE_RELEASE_VERSION }}
+      - 
+        name: Push to Docker Hub as latest
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: lanandra/acakin
+          tags: latest
